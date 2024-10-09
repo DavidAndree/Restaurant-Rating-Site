@@ -1,7 +1,7 @@
 # Assignment 3 - Creating a Restaurant Rating Site
 
 ## Author
-
+David Alvarado
 
 
 ## Description
