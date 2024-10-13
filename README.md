@@ -132,4 +132,6 @@ You should also be able to load bootstrap via a CDN link which will save you fro
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
+When creating a review, there is a 404
 
+When creating account, it creates it because is stores the user in db, but can't login (haven't created login page).
