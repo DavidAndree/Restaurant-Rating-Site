@@ -1,0 +1,16 @@
+<!--
+ David Alvarado
+ Cis218
+ 10/12/24
+ -->
+
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<h2>Sign Up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Sign Up</button>
+</form>
+{% endblock %}

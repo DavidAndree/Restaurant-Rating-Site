@@ -1,0 +1,17 @@
+<!--
+ David Alvarado
+ Cis218
+ 10/12/24
+ -->
+
+{% extends 'base.html' %}
+{% block title %}Delete Review{% endblock %}
+{% block content %}
+<h2>Delete Review</h2>
+<p>Are you sure you want to delete "{{ object }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{% url 'restaurant_detail' object.restaurant.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
