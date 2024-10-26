@@ -1,3 +1,9 @@
+"""
+David Alvarado
+Cis 218
+10/12/24
+"""
+
 from django.urls import path
 from .views import SignUpView
 

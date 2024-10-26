@@ -23,7 +23,6 @@ urlpatterns = [
     path('reviews/', ReviewListView.as_view(), name='review_list'), 
     path('review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),  
     path('restaurant/<int:restaurant_pk>/review/add/', ReviewCreateView.as_view(), name='add_review'),
-    # path('review/add/', ReviewCreateView.as_view(), name='add_review'),  
     path('review/<int:pk>/update/', ReviewUpdateView.as_view(), name='update_review'), 
     path('review/<int:pk>/delete/', ReviewDeleteView.as_view(), name='delete_review'),  
     path('signup/', SignUpView.as_view(), name='signup'),  

@@ -5,25 +5,69 @@
  -->
 
 {% extends 'base.html' %}
+
 {% block title %}{{ restaurant.name }}{% endblock %}
+
 {% block content %}
-<h2>{{ restaurant.name }}</h2>
-<p>{{ restaurant.address }}</p>
-<h3>Reviews</h3>
-{% if restaurant.reviews.count > 0 %}
-<ul>
-    {% for review in restaurant.reviews.all %}
-    <li>
-        {{ review.user.username }}: {{ review.rating }} - {{ review.body }}
-        {% if review.user == user %}
-        <a href="{% url 'update_review' review.pk %}">Edit</a> |
-        <a href="{% url 'delete_review' review.pk %}">Delete</a>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No reviews yet.</p>
-{% endif %}
-<a href="{% url 'add_review' restaurant.pk %}" class="btn btn-primary">Add Review</a>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ restaurant.name }}</h2>
+                    <div class="d-flex align-items-center mb-3">
+                        {% if restaurant.reviews.count > 0 %}
+                            <span class="me-3">
+                                <i class="bi bi-star-fill text-warning"></i> 
+                                {{ average_rating|default:"0"|floatformat:1 }} out of 5
+                            </span>
+                            <span class="text-muted">
+                                <i class="bi bi-card-checklist"></i> 
+                                {{ restaurant.reviews.count }} Review{{ restaurant.reviews.count|pluralize }}
+                            </span>
+                        {% else %}
+                            <span class="me-3">
+                                <i class="bi bi-star text-warning"></i> 
+                                No ratings yet
+                            </span>
+                            <span class="text-muted">
+                                <i class="bi bi-card-checklist"></i> 
+                                No reviews yet
+                            </span>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'add_review' restaurant.pk %}" class="btn btn-primary mb-3">
+                        <i class="bi bi-plus-circle"></i> Write a review
+                    </a>
+                    <hr>
+                    {% if restaurant.reviews.count > 0 %}
+                        <h4 class="mb-3">Reviews</h4>
+                        <div class="list-group">
+                            {% for review in restaurant.reviews.all %}
+                                <div class="card mb-3" id="review-{{ review.pk }}">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ review.user.profile_image_url }}" alt="{{ review.user.username }}" class="rounded-circle me-2" width="40">
+                                                <strong>{{ review.user.username }}</strong>
+                                                <span class="ms-2">
+                                                    <i class="bi bi-star-fill text-warning"></i> {{ review.rating }}-Star
+                                                </span>
+                                            </div>
+                                            <small class="text-muted">Created {{ review.created|date:"M d, Y, g:i a" }}</small>
+                                        </div>
+                                        <p class="mt-2">{{ review.body|truncatewords:30 }}</p>
+                                        <a href="{% url 'review_detail' review.pk %}" class="btn btn-outline-secondary btn-sm">Read full review</a> 
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">There are no reviews yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

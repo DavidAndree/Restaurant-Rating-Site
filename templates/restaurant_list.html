@@ -4,20 +4,42 @@
  10/12/24
  -->
 
- {% extends 'base.html' %}
- {% block content %}
- <div class="row justify-content-center">
-     <div class="col-md-8">
-         <h2 class="my-4">Restaurants</h2>
-         <div class="list-group">
-             {% for restaurant in restaurants %}
-                 <a href="{% url 'restaurant_detail' restaurant.pk %}" class="list-group-item list-group-item-action">
-                     {{ restaurant.name }}
-                 </a>
-             {% empty %}
-                 <div class="list-group-item">No restaurants available.</div>
-             {% endfor %}
-         </div>
-     </div>
- </div>
- {% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}All Restaurants{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">All Restaurants</h2>
+    <div class="list-group">
+        {% for restaurant in restaurants %}
+            <div class="list-group-item py-3">
+                <h3>
+                    <a href="{% url 'restaurant_detail' restaurant.pk %}" class="text-primary fw-bold">{{ restaurant.name }}</a>
+                </h3>
+                <p class="mb-1">
+                    {% if restaurant.reviews.count > 0 %}
+                        <span class="d-block text-muted">
+                            <i class="bi bi-star-fill text-warning"></i> 
+                            {{ restaurant.avg_rating|default:"0"|floatformat:1 }} out of 5
+                        </span>
+                        <span class="d-block text-muted">
+                            <i class="bi bi-card-checklist"></i> 
+                            {{ restaurant.reviews.count }} Review{{ restaurant.reviews.count|pluralize }}
+                        </span>
+                    {% else %}
+                        <span class="d-block text-muted">
+                            <i class="bi bi-star text-warning"></i> 
+                            No ratings yet
+                        </span>
+                        <span class="d-block text-muted">
+                            <i class="bi bi-card-checklist"></i> 
+                            No reviews yet
+                        </span>
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -5,31 +5,39 @@
  -->
 
 {% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-4">
-        <h2>Sign Up</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Sign Up</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="id_username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="id_password1" name="password1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Confirm Password:</label>
+                            <input type="password" class="form-control" id="id_password2" name="password2" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <small class="text-muted">&copy; 2022 - David Alvarado</small>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password1" name="password1" required>
-            </div>
-            <div class="mb-3">
-                <label for="password2" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password2" name="password2" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+        </div>
     </div>
 </div>
 {% endblock %}
-
