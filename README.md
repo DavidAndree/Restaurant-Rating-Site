@@ -132,6 +132,13 @@ You should also be able to load bootstrap via a CDN link which will save you fro
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-When creating a review, there is a 404
+The errors I'm aware of are:
 
-When creating account, it creates it because is stores the user in db, but can't login (haven't created login page).
+  Main Program Errors:
+  Im having issues with user sign up, it does not create a user after imputing credentials. I checked user creation in admin and it actually doesn't create the user. (Hoping to fix it after class :)
+
+
+  (Doesn't really affect program functionality):
+  I wasn't able to implement the IMG loading for the user correctly.
+
+  In the navbar the Profile option is a placedhold (#) Doesn't really do something is just there for looks.
