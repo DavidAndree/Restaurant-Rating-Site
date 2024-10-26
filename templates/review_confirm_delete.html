@@ -12,6 +12,6 @@
 <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">Confirm</button>
-    <a href="{% url 'restaurant_detail' object.restaurant.pk %}" class="btn btn-secondary">Cancel</a>
+    <a href="{% url 'restaurant_detail' %}" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}

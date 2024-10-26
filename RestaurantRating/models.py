@@ -19,8 +19,8 @@ class Restaurant(models.Model):
 
 class Review(models.Model):
     """Review Model"""
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
     body = models.TextField()  
     rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
     created = models.DateTimeField(auto_now_add=True)  
@@ -28,4 +28,3 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review of {self.restaurant.name} by {self.user.username}"
-

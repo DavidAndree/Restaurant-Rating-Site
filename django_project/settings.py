@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "RestaurantRating.apps.RestaurantratingConfig",
+    "accounts.apps.AccountsConfig"
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Redirect URL after login
+LOGIN_REDIRECT_URL = 'restaurant_list' 
+
+# Logout redirect 
+LOGOUT_REDIRECT_URL = 'login'  
+
+# Login URL (For LoginRequiredMixin)
+LOGIN_URL = 'login'  

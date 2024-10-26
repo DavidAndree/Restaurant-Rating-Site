@@ -5,25 +5,13 @@
  -->
 
 {% extends 'base.html' %}
-{% block title %}{{ object.name }}{% endblock %}
+
+{% block title %}Add Review{% endblock %}
 {% block content %}
-<h2>{{ object.name }}</h2>
-<p>{{ object.address }}</p>
-<h3>Reviews</h3>
-{% if object.reviews.count > 0 %}
-<ul>
-    {% for review in object.reviews.all %}
-    <li>
-        {{ review.user.username }}: {{ review.rating }} - {{ review.comment }}
-        {% if review.user == user %}
-        <a href="{% url 'update_review' review.pk %}">Edit</a> |
-        <a href="{% url 'delete_review' review.pk %}">Delete</a>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No reviews yet.</p>
-{% endif %}
-<a href="{% url 'add_review' object.pk %}" class="btn btn-primary">Add Review</a>
+<h2>Add Review for {{ restaurant.name }}</h2>  
+<form method="post" action="{% url 'add_review' restaurant.pk %}"> 
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
 {% endblock %}
