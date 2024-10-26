@@ -135,7 +135,7 @@ You should also be able to load bootstrap via a CDN link which will save you fro
 The errors I'm aware of are:
 
   Main Program Errors:
-  Im having issues with user sign up, it does not create a user after imputing credentials. I checked user creation in admin and it actually doesn't create the user. (Hoping to fix it after class :)
+  Im having issues with user sign up, it does not create a user after imputing credentials. I checked user creation in admin and it actually doesn't create the user. (If needed, username: davidbarnes password: Passw0rd!) --I would never do this in production.
 
 
   (Doesn't really affect program functionality):
